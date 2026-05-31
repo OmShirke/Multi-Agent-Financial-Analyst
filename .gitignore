@@ -1,3 +1,43 @@
+# --- Secrets ---
 .env
-uv.lock
-.venvs
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# --- Virtualenv (managed by uv) ---
+.venv/
+venv/
+env/
+
+# Note: uv.lock IS committed (reproducible installs). Do not ignore it.
+
+# --- Generated data (large, regenerable via `uv run python -m data.ingest`) ---
+chroma_db/
+data/filings/
+
+# --- Tooling caches ---
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
