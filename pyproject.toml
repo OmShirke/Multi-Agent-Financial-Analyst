@@ -1,0 +1,52 @@
+[project]
+name = "financial-analyst"
+version = "0.1.0"
+description = "Multi-agent financial analyst system built with LangGraph"
+requires-python = ">=3.11"
+dependencies = [
+    # LangChain ecosystem
+    "langchain>=0.3",
+    "langchain-core>=0.3",
+    "langchain-community>=0.3",
+    "langgraph>=0.2",
+
+    # LLM + embeddings — single provider (Gemini)
+    "langchain-google-genai>=2.0",
+
+    # Vector store — in-process, no Docker needed
+    "langchain-chroma>=0.1",
+    "chromadb>=0.5",
+
+    # Data sources
+    "sec-edgar-downloader>=5.0",
+    "yfinance>=0.2",
+    "langchain-tavily>=0.1",
+    "beautifulsoup4>=4.12",  # HTML stripping for 10-K filings during ingest
+
+    # Structured config & outputs
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-dotenv>=1.0",
+
+    # UI
+    "streamlit>=1.35",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Our package directory is `src/` (imports look like `from src.config import ...`),
+# which doesn't match the project name, so hatchling needs an explicit pointer.
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[dependency-groups]
+dev = [
+    "ipython>=8.0",
+    "ruff>=0.4",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
